@@ -1,0 +1,8 @@
+.userCards {
+  display: flex;
+  justify-content: center;
+}
+
+.winner {
+  border: 3px solid red;
+}

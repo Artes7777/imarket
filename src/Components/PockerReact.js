@@ -62,16 +62,16 @@ const PockerReact = () => {
             {firstHandSum > secondHandSum ? <div>winner</div> : null}
             <img alt = "Крупье" style = {{"width" : "100px", "height" : "100px"}} src = {Сroupier}/>
             <div className = "userCards">
-              {firstHandsCards.map((card) => {
+              {firstHandsCards.length == 2 ? firstHandsCards.map((card) => {
                 return <div key = {card.number}><img style = {{"width" : "100px", "height" : "100px"}} src = {card.img} /></div>
-              })}
+              }) : "Загрузка"}
           </div>
           </div>
           <div className = {secondHandSum > firstHandSum  ? "winner" : null}>
             <div className = "userCards">
-              {secondHandCards.map((card) => {
+              {firstHandsCards.length == 2 ? secondHandCards.map((card) => {
                 return <div key = {card.number}><img style = {{"width" : "100px", "height" : "100px"}} src = {card.img} /></div>
-              })}
+              }): "Загрузка" }
             </div>
             <img alt = "Игрок" style = {{"width" : "100px", "height" : "100px"}} src = {Gamer}/>
             {secondHandSum > firstHandSum  ? <div>winner</div> : null}

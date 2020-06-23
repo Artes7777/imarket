@@ -8,8 +8,8 @@ import './PockerReact.css';
 
 const PockerReact = () => {
   const [startGame, setGameStart] = useState(false);
-  const [firstHandsCards, setFirstHandFirstCard] = useState([]);
-  const [secondHandCards, setSecondHandFirstCard] = useState([]);
+  const [firstHandsCards, setFirstHandCards] = useState([]);
+  const [secondHandCards, setSecondHandCards] = useState([]);
   const [firstHandSum , setFirstHandSum] = useState(0);
   const [secondHandSum , setSecondHandSum] = useState(0);
 
@@ -27,20 +27,22 @@ const PockerReact = () => {
 
     const secondHandSecondCard = takeCard();
     deleteCardFromDeck(secondHandSecondCard);
+    
+    setFirstHandCards([...firstHandsCards, findCard(firstHandsfirstCard), findCard(firstHandsSecondCard)])
+    setSecondHandCards([...secondHandCards, findCard(secondHandFirstCard), findCard(secondHandSecondCard)]);
 
     const firstHandsSum = findCard(firstHandsfirstCard).value + findCard(firstHandsSecondCard).value;
     const secondHandsSum = findCard(secondHandFirstCard).value + findCard(secondHandSecondCard).value;
 
     setFirstHandSum(firstHandsSum);
     setSecondHandSum(secondHandsSum);
-    setFirstHandFirstCard([...firstHandsCards, findCard(firstHandsfirstCard), findCard(firstHandsSecondCard)])
-    setSecondHandFirstCard([...secondHandCards, findCard(secondHandFirstCard), findCard(secondHandSecondCard)]);
+
     console.log(firstHandsSum);
-    console.log(secondHandsSum);
+    console.log(secondHandsSum); 
   }
 
   const takeCard = () => {
-    return сardsdeck[Math.floor(Math.random() * сardsdeck.length + 1)];
+    return сardsdeck[Math.floor(Math.random() * сardsdeck.length)];
   }
 
   const deleteCardFromDeck = (card) => {
@@ -49,10 +51,9 @@ const PockerReact = () => {
   }
 
   const findCard = (card) => {
-    const myCard = deck.find( (elem) => elem.number === card)
-    return myCard; 
+    return deck.find( (elem) => elem.number === card)
   }
-  
+   
   return (
     <div>
       {!startGame && <div><button onClick = {handOverCards}>Сдать карты</button></div>}
@@ -62,15 +63,15 @@ const PockerReact = () => {
             {firstHandSum > secondHandSum ? <div>winner</div> : null}
             <img alt = "Крупье" style = {{"width" : "100px", "height" : "100px"}} src = {Сroupier}/>
             <div className = "userCards">
-              {firstHandsCards.length == 2 ? firstHandsCards.map((card) => {
-                return <div key = {card.number}><img style = {{"width" : "100px", "height" : "100px"}} src = {card.img} /></div>
+              {firstHandsCards.length === 2 ? firstHandsCards.map((card) => {
+                return <div key = {card.number}><img alt = "карта" style = {{"width" : "100px", "height" : "100px"}} src = {card.img} /></div>
               }) : "Загрузка"}
-          </div>
+            </div>
           </div>
           <div className = {secondHandSum > firstHandSum  ? "winner" : null}>
             <div className = "userCards">
-              {firstHandsCards.length == 2 ? secondHandCards.map((card) => {
-                return <div key = {card.number}><img style = {{"width" : "100px", "height" : "100px"}} src = {card.img} /></div>
+              {firstHandsCards.length === 2 ? secondHandCards.map((card) => {
+                return <div key = {card.number}><img alt = "карта" style = {{"width" : "100px", "height" : "100px"}} src = {card.img} /></div>
               }): "Загрузка" }
             </div>
             <img alt = "Игрок" style = {{"width" : "100px", "height" : "100px"}} src = {Gamer}/>

@@ -48,7 +48,7 @@ export const deck = [
   {number : 47, value : 10, img: "../img/Kh.png"},
   {number : 48, value : 10, img: "../img/Ks.png"},
   {number : 49, value : 11, img: "../img/Ac.png"},
-  {number : 50, value : 11, img: "../img/Ad.png"},
+  {number : 50, value : 11, img: "../img/Ab.png"},
   {number : 51, value : 11, img: "../img/Ah.png"},
   {number : 52, value : 11, img: "../img/As.png"},
 ]

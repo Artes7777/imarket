@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import {сardsdeck} from '../cards';
 import {deck} from '../deck';
 import Сroupier from '../img/2.png';
 import Gamer from '../img/1.jpg';
@@ -28,11 +27,11 @@ const PockerReact = () => {
     const secondHandSecondCard = takeCard();
     deleteCardFromDeck(secondHandSecondCard);
     
-    setFirstHandCards([...firstHandsCards, findCard(firstHandsfirstCard), findCard(firstHandsSecondCard)])
-    setSecondHandCards([...secondHandCards, findCard(secondHandFirstCard), findCard(secondHandSecondCard)]);
+    setFirstHandCards([...firstHandsCards, firstHandsfirstCard, firstHandsSecondCard])
+    setSecondHandCards([...secondHandCards, secondHandFirstCard, secondHandSecondCard]);
 
-    const firstHandsSum = findCard(firstHandsfirstCard).value + findCard(firstHandsSecondCard).value;
-    const secondHandsSum = findCard(secondHandFirstCard).value + findCard(secondHandSecondCard).value;
+    const firstHandsSum = firstHandsfirstCard.value + firstHandsSecondCard.value;
+    const secondHandsSum = secondHandFirstCard.value + secondHandSecondCard.value;
 
     setFirstHandSum(firstHandsSum);
     setSecondHandSum(secondHandsSum);
@@ -42,16 +41,12 @@ const PockerReact = () => {
   }
 
   const takeCard = () => {
-    return сardsdeck[Math.floor(Math.random() * сardsdeck.length)];
+    return deck[Math.floor(Math.random() * deck.length)];
   }
 
   const deleteCardFromDeck = (card) => {
-    const index = сardsdeck.findIndex((elem) => elem === card);
-    сardsdeck.splice(index, 1);
-  }
-
-  const findCard = (card) => {
-    return deck.find( (elem) => elem.number === card)
+    const index = deck.findIndex((elem) => elem.number === card.number);
+    deck.splice(index, 1);
   }
    
   return (
